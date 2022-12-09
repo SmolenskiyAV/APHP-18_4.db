@@ -27,7 +27,7 @@ class SQLiteTableOperation implements \Objects\App\DataWrapperInterface
             $columns[] = $col['name'];
             if ($i === 0) $this->id_name = $col['name'];       // сохранение имени индексного поля в отдельной переменной
         }
-        unset($columns[0]);                 // удаление индексного поля из списка
+        unset($columns[0]);                 // удаление индексного/ных поля/лей из списка
         $columns = array_values($columns);  // реиндексация списка всех полей
         $this->tableColumns = $columns;
 

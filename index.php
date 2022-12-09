@@ -40,19 +40,19 @@ try {
     // создание ТАБЛИЦЫ ПРОДУКТОВ
     $pdo->exec("CREATE TABLE IF NOT EXISTS Product (
         p_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        sh_id INTEGER,
         p_name TEXT NOT NULL,
         p_price REAL,
-        quantity INTEGER);"
+        quantity INTEGER,
+        FOREIGN KEY(p_id) REFERENCES Shop(sh_id) );"
     );
 
     // создание ТАБЛИЦЫ ЗАКАЗОВ
     $pdo->exec("CREATE TABLE IF NOT EXISTS Order_ (
         o_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        sh_id INTEGER,
         created_at TEXT,
         o_seller TEXT,
-        o_buyer TEXT);"
+        o_buyer TEXT,
+        FOREIGN KEY(o_id) REFERENCES Shop(sh_id));"
     );
 
     // создание ТАБЛИЦЫ СООТВЕТСТВИЯ ПРОДУКТОВ И ЗАКАЗОВ
@@ -99,54 +99,54 @@ try {
 
     // *** заполнение таблицы Product ***
     $inputProduct = new App\SQLiteTableOperation($pdo, 'Product');
-    $productValues = [1, 'gearbox1', 100.0, 10];
+    $productValues = ['gearbox1', 100.0, 10];
     $productResults = $inputProduct -> insert($productValues);
     unset($inputProduct);
 
     $inputProduct = new App\SQLiteTableOperation($pdo, 'Product');
-    $productValues = [2, 'gearbox2', 200.0, 20];
+    $productValues = ['gearbox2', 200.0, 20];
     $productResults = $inputProduct -> insert($productValues);
     unset($inputProduct);
 
     $inputProduct = new App\SQLiteTableOperation($pdo, 'Product');
-    $productValues = [3, 'gearbox3', 300.0, 30];
+    $productValues = ['gearbox3', 300.0, 30];
     $productResults = $inputProduct -> insert($productValues);
     unset($inputProduct);
 
     $inputProduct = new App\SQLiteTableOperation($pdo, 'Product');
-    $productValues = [4, 'gearbox4', 400.0, 40];
+    $productValues = ['gearbox4', 400.0, 40];
     $productResults = $inputProduct -> insert($productValues);
     unset($inputProduct);
 
     $inputProduct = new App\SQLiteTableOperation($pdo, 'Product');
-    $productValues = [5, 'gearbox5', 500.0, 50];
+    $productValues = ['gearbox5', 500.0, 50];
     $productResults = $inputProduct -> insert($productValues);
     unset($inputProduct);
     // *** окончание работы с таблицей Product ***
 
     // *** заполнение таблицы Order_ ***
     $inputOrder = new App\SQLiteTableOperation($pdo, 'Order_');
-    $orderValues = [1, '8.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
+    $orderValues = ['8.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
     $orderResults = $inputOrder -> insert($orderValues);
     unset($inputOrder);
 
     $inputOrder = new App\SQLiteTableOperation($pdo, 'Order_');
-    $orderValues = [2, '7.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
+    $orderValues = ['7.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
     $orderResults = $inputOrder -> insert($orderValues);
     unset($inputOrder);
 
     $inputOrder = new App\SQLiteTableOperation($pdo, 'Order_');
-    $orderValues = [3, '6.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
+    $orderValues = ['6.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
     $orderResults = $inputOrder -> insert($orderValues);
     unset($inputOrder);
 
     $inputOrder = new App\SQLiteTableOperation($pdo, 'Order_');
-    $orderValues = [4, '5.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
+    $orderValues = ['5.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
     $orderResults = $inputOrder -> insert($orderValues);
     unset($inputOrder);
 
     $inputOrder = new App\SQLiteTableOperation($pdo, 'Order_');
-    $orderValues = [5, '4.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
+    $orderValues = ['4.12.2022 1:35', 'mr. Jones', 'ms. O`Reiley'];
     $orderResults = $inputOrder -> insert($orderValues);
     unset($inputOrder);
     // *** окончание работы с таблицей Order_ ***
