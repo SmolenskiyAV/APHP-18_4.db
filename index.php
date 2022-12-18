@@ -29,6 +29,13 @@ try {
     echo 'Connected to the SQLite database successfully!' . PHP_EOL;
     $temp = $pdo;
 
+    // Очистка базы данных (если запуски программы многократные)
+    $pdo->exec("DROP TABLE  IF EXISTS Client");
+    $pdo->exec("DROP TABLE  IF EXISTS Order_");
+    $pdo->exec("DROP TABLE  IF EXISTS Order_product");
+    $pdo->exec("DROP TABLE  IF EXISTS Product");
+    $pdo->exec("DROP TABLE  IF EXISTS Shop");
+
     // создание ТАБЛИЦЫ МАГАЗИНА
     $pdo->exec("CREATE TABLE IF NOT EXISTS Shop (
         sh_id INTEGER PRIMARY KEY AUTOINCREMENT,
